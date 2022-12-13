@@ -1,0 +1,51 @@
+@import url("reset.css") screen;
+@import url("animation_no_3.css") screen;
+#slider {
+	display: table;
+}
+#slider #first{
+	width: 100%;
+	height: 100%;
+	position:absolute;
+	top:-100%;
+	list-style:none;
+}
+#slider #second,
+#slider #third,
+#slider #fourth {
+	width: 100%;
+	height: 100%;
+	position:absolute;
+	top:-100%;
+	list-style:none;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	margin: 5% auto;
+	padding: 0px;
+}
+
+#slider div.firstanimation {
+	-moz-animation:cycle 100s linear infinite;	
+	-webkit-animation:cycle 100s linear infinite;		
+}
+#slider div.secondanimation {
+	-moz-animation:cycletwo 100s linear infinite;
+	-webkit-animation:cycletwo 100s linear infinite;		
+}
+#slider div.thirdanimation {
+	-moz-animation:cyclethree 100s linear infinite;
+	-webkit-animation:cyclethree 100s linear infinite;	
+}
+
+#slider div.fourthanimation {
+	-moz-animation:cyclefourth 100s linear infinite;
+	-webkit-animation:cyclefourth 100s linear infinite;	
+}
+
+
+#slider:hover div{
+	-moz-animation-play-state:paused;
+	-webkit-animation-play-state:paused;
+}
+

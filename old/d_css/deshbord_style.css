@@ -1,0 +1,1551 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+
+
+
+
+body{
+	font-family: Arial;
+	overflow-y: hidden;
+	
+}
+.nav_top{
+	position: fixed;
+	top: 0;
+	display: block;
+	background: #fff;
+	height: 50px;
+}
+
+.nav_top a{
+	float: left;
+}
+.text{
+	float: left;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.nav_top .date{
+	display: block;
+	position: absolute;
+	padding-top: 5px;
+	padding-right: 10px;
+}
+
+.nav_top .date span{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+#date{
+	float: right;
+	margin-left: 10px;
+
+}
+
+#time{
+	float: left;
+	margin-top: 10px;
+	margin-left: 700px;
+
+}
+
+#time span{
+	font-size: 34px !important;
+	font-weight: bold;		
+}
+
+.nav_top span{
+	font-size: 14px;
+	line-height: 20px;
+	color: #34a5eb;
+	font-weight: 500;
+}
+
+.madeinkz{
+	float: right;
+	padding: 10px;
+	padding-left: 20px;
+}
+
+.number_one{
+	float: left;
+	padding-left: 70px;
+	display: none;
+}
+.body_content{
+	height: 100% !important;
+	overflow-y: hidden;
+}
+
+.top_block{
+	border-bottom: 1px solid #161417;
+	height: 220px;
+}
+
+#container_1 {
+    height: 160px !important;
+	min-width: 500px !important;
+    max-width: 500px !important;
+	width: 500px !important;
+    margin: 0 auto; 
+}
+
+#container_2 {
+    height: 160px !important; 
+	min-width: 500px !important;
+    max-width: 500px !important;
+	width: 500px !important;
+    margin: 0 auto; 
+}
+
+
+.title_block{
+	padding: 10px 10px 0px;
+	font-size: 14px;
+    color: #fff;
+	line-height: 14px; 
+}
+
+.diagramm_1, .diagramm_2, .div_to_day, .div_to_arhiv{
+	height: 100%; 
+	border-right: 1px solid #161417; 
+}
+
+
+.div_to_day, .div_to_arhiv{
+	color: #fff;
+}
+
+
+.public_all_period, .public_to_day{
+	padding-top: 10px;
+    font-size: 14px;
+    line-height: 14px; 
+}
+
+h1{
+	font-size: 30px !important;
+}
+
+h2{
+	font-size: 22px !important;
+}
+
+
+.title_div_to_day{
+	margin-bottom: 0px;
+	margin-top: 18px !important;
+	font-weight: bold;
+	
+}
+
+
+.day_all_public{
+	font-size: 10px;
+	color: #68a4ec !important;
+}
+.day_smi_public{
+	font-size: 10px;
+	color: #74b283 !important;
+}
+.day_social_public{
+	font-size: 10px;
+	color: #de9141 !important;
+}
+
+
+
+/* .highcharts-container { */
+	/* max-width: 500px !important; */
+/* } */
+
+.highcharts-series-0 text{
+	font-size: 10px !important;
+	font-weight: inherit !important;
+	fill: #68a4ec !important;
+}
+
+.highcharts-series-1 text{
+	font-size: 10px !important;
+	font-weight: inherit !important;
+	fill: #74b283 !important;
+}
+
+
+.highcharts-series-2 text{
+	font-size: 10px !important;
+	font-weight: inherit !important;
+	fill: #de9141 !important;
+}
+
+.maps_block{
+	border-bottom: 1px solid #161417;
+	border-right: 1px solid #161417; 
+	height: 350px;
+}
+
+.maps_world{
+	border-right: 1px solid #161417; 
+}
+.maps_world, .maps_rk{
+	height: 256px; 
+	border-bottom: 1px solid #161417; 
+}
+
+#container_maps_rk {
+    height: 190px; 
+    max-width: 310px; 
+    margin: 0 auto; 
+}
+
+
+#container_maps_world {
+    height: 190px; 
+    max-width: 310px; 
+    margin: 0 auto; 
+}
+
+.highcharts-legend-item.highcharts-undefined-series.highcharts-color-undefined{
+	/* display: none; */
+}
+
+.top_smi, .top_social{
+	height: 350px;
+	border-right: 1px solid #161417; 
+	border-bottom: 1px solid #161417; 
+}
+
+.title_block span{
+	font-size: 10px;
+}
+
+
+.statistics_maps table{
+		margin-top: 26px;
+	}
+
+
+.table_num{
+	margin-left: 5px;
+}
+
+.numbering{
+	padding: 0px 5px;
+	width: 27px;
+	color: #fff;
+	font-size: 14px;
+	height: 32px !important;
+	font-weight: bold;
+	position: relative !important;
+}
+
+
+.table_smi{
+	margin-left: 5px;
+}
+
+.table_smi tr, .table_smi td{
+	height: 32px !important;
+}
+
+.table_soc{
+	margin-left: 5px;
+}
+
+.table_soc tr, .table_soc td{
+	height: 32px !important;
+}
+
+
+.top_block_count a{
+	color: #fff !important;
+	/* white-space: nowrap; */
+}
+
+.top_smi_name{
+	width: 30px;
+}
+.top_block_count{
+	max-width: 195px;
+	width: 195px;
+	min-width: 195px;
+	color: #fff;
+	font-size: 10px;
+}
+.top_smi_count{
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	width: 60px;
+	text-align: right;
+	vertical-align: center;
+}
+
+
+.top_smi_name img{
+	width: 20px;
+	max-height: 30px;
+}
+
+
+
+.top_block_count div{
+	background-color: #68a4ec;
+	height: 5px; 
+	margin-top: 2px;
+}
+
+
+
+
+
+.statistics_maps h1{
+	color: #fff !important;
+	margin-bottom: 0px !important;
+	font-weight: bold;
+	
+}
+
+.statistics_maps span{
+	color: #fff !important;
+	font-size: 10px;
+}
+
+.live_block{
+	height: 42px;
+	position: absolute !important;
+	bottom: 0 !important;
+}
+
+.live_title{
+	height: 100%;
+	background-color: #d63030;
+	text-align: center;
+}
+
+.live_title div{
+	color: #fff;
+	font-size: 26px;
+	font-weight: bold;
+	margin-top: 6px; 
+}
+
+
+
+.live_smi_social{
+	height: 100%;
+	background-color: #fff;
+	border-right: 2px solid #e5e4e5; 
+	text-align: center;
+}
+
+.live_smi{
+	height: 50%;
+	border-bottom: 1px solid #fafafa;
+	color: #74b283;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px !important;
+}
+.live_social{
+	height: 50%;
+	border-top: 1px solid #bbbbbb;
+	color: #de9141;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px !important;
+}
+
+
+.live_content{
+	height: 100%;
+	background-color: #fff;
+	font-size: 12px;
+}
+
+.live_smi_content{
+	height: 50%;
+	border-bottom: 1px solid #fafafa;
+	padding: 3px 10px !important;
+}
+
+.live_smi_content span{
+	color: #74b283;
+}
+
+.live_social_content{
+	height: 50%;
+	border-top: 1px solid #bbbbbb;
+    padding: 3px 10px !important;
+}
+.live_social_content span{
+	color: #de9141;
+}
+
+
+
+.name_statistic_2014{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+.name_statistic_2015{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	
+}
+.name_statistic_2016{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+.name_statistic_2017{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+
+.name_statistic_2018{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+.name_statistic_2019{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+.name_statistic_2020{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+.name_statistic_2021{
+	position: absolute;
+    bottom: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+
+
+.name_statistic_00{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+}
+
+.name_statistic_04{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	margin-left: 75px;
+}
+
+.name_statistic_08{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	margin-left: 150px;
+}
+
+
+.name_statistic_12{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	margin-left: 225px;
+}
+
+
+.name_statistic_16{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	margin-left: 300px;
+}
+
+
+.name_statistic_20{
+	position: absolute;
+    bottom: 50px;
+    left: 50px;
+    z-index: 99999;
+	font-size: 12px;
+    color: #fff;
+	float: left;
+	margin-left: 375px;
+}
+
+#marquee_smi span, #marquee_social span{
+	font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    opacity: 0;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+}
+
+
+#second img,
+#third img,
+#fourth img,
+#five img{
+	height: 80% !important;
+}
+.our-phone a {
+    color: #428bca;
+    text-decoration: none;
+}
+@media (max-width: 1250px){
+	.login-panel{
+		width: 40%;
+		left: 30%;
+		bottom: initial !important;
+		top: 30% !important;
+		right: initial !important;
+		position: fixed !important;
+		margin:auto !important;
+		margin-top:0 !important;
+		margin-bottom: 0 !important;
+		text-align: center;
+	}
+	.login{
+		position: relative !important;
+		width: 100%;
+	}
+	.welcome {
+		position: relative !important;
+		font-size: 40px;
+	}
+	.status{		
+		position: relative !important;
+		width: 100%;
+		margin-bottom: 10px !important;
+		margin-top: 10px !important;
+	}
+	.quote {
+		position: fixed !important;
+	    bottom: 5% !important;
+		margin-top:0 !important;
+		margin-bottom: 0 !important;
+		top: initial !important;
+	}
+	#bs-example-navbar-collapse-2{
+		margin-top: 10px;
+	}
+}
+@media (min-width: 1600px){
+	.navbar-default {
+		width: 100% !important;
+	}
+}
+
+
+.dropdown-menu > li > a {
+	margin: 0px !important;
+}
+
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+	
+}
+
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation : landscape){ 
+	
+}
+
+@media (min-height: 768px)  {
+	.top_block{
+		height: 280px;
+	}
+	
+	
+	#container_1 {
+		height: 230px !important;
+	}
+	#container_2 {
+		height: 230px !important; 
+	}	
+		
+	#container_maps_rk {
+		height: 220px; 
+	}
+
+	#container_maps_world {
+		height: 220px; 
+	}	
+	
+	.maps_block{
+		height: 360px;
+	}
+	.maps_world, .maps_rk{
+		height: 280px; 
+	}
+	
+	
+	h1{
+		margin-top: 10px !important;
+		font-size: 30px !important;
+	}
+
+	.title_div_to_day {
+		margin-top: 24px !important;
+	}
+	h2{
+		font-size: 22px !important;
+	}
+	
+	
+	.top_smi, .top_social {
+		height: 360px;
+	}
+	
+	.table-sorter, .table_num {
+		margin-top: 5px;
+		margin-left: 15px;
+		min-height: 320px;
+		max-height: 320px;
+	}
+	.numbering {
+		font-size: 18px;
+	}
+	.top_smi_name {
+		width: 30px;
+	}
+	.top_smi_name img {
+		width: 20px !important;
+		max-height: 30px;
+	}
+	.top_block_count {
+		width: 200px;
+		color: #fff;
+		font-size: 12px;
+	}
+	
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017{
+		position: absolute;
+		bottom: 40px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 70px;
+	}
+	.name_statistic_2016{
+		margin-left: 210px;
+	}
+	.name_statistic_2017{
+		margin-left: 350px;
+	}
+	
+	.live_block {
+		height: 65px;
+	}
+	
+	.live_title div {
+		font-size: 30px;
+		margin-top: 10px;
+	}
+	
+	.live_smi, .live_social {
+		font-size: 20px;
+		padding: 1px !important;
+	}
+	
+	.live_smi_content, .live_social_content{
+		padding: 6px 10px !important;
+	}
+	.live_content {
+		font-size: 14px;
+	}
+}
+
+
+
+
+@media (min-height: 860px)  {
+	.top_block{
+		height: 310px;
+	}
+	
+	
+	#container_1 {
+		height: 250px !important;
+	}
+	#container_2 {
+		height: 250px !important; 
+	}	
+		
+	#container_maps_rk {
+		height: 240px; 
+	}
+
+	#container_maps_world {
+		height: 240px; 
+	}	
+	
+	.maps_block{
+		height: 390px;
+	}
+	.maps_world, .maps_rk{
+		height: 310px; 
+	}
+	
+	
+	h1{
+		margin-top: 10px !important;
+		font-size: 30px !important;
+	}
+
+	.title_div_to_day {
+		margin-top: 24px !important;
+	}
+	h2{
+		font-size: 22px !important;
+	}
+	
+	
+	.top_smi, .top_social {
+		height: 390px;
+	}
+	
+	.table-sorter, .table_num {
+		margin-top: 5px;
+		margin-left: 15px;
+		min-height: 340px;
+		max-height: 340px;
+	}
+	.numbering {
+		font-size: 18px;
+	}
+	.top_smi_name {
+		width: 30px;
+	}
+	.top_smi_name img {
+		width: 20px !important;
+		max-height: 30px;
+	}
+	.top_block_count {
+		width: 200px;
+		color: #fff;
+		font-size: 12px;
+	}
+	
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017{
+		position: absolute;
+		bottom: 50px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 70px;
+	}
+	.name_statistic_2016{
+		margin-left: 210px;
+	}
+	.name_statistic_2017{
+		margin-left: 350px;
+	}
+	
+}
+
+@media (min-height: 950px)  {
+	.statistics_maps h1 {
+		margin-top: 10px !important;
+	}
+	.statistics_maps table {
+		margin-top: 16px;
+	}
+	.table_smi tr, .table_smi td{
+		height: 40px !important;
+	}
+
+	.table_soc tr, .table_soc td{
+		height: 40px !important;
+	}
+	
+	
+	.numbering {
+		font-size: 18px;
+		height: 40px !important;
+	}
+}
+
+
+@media (min-height: 970px)  {
+
+	.table_smi tr, .table_smi td{
+		height: 43px !important;
+	}
+
+	.table_soc tr, .table_soc td{
+		height: 43px !important;
+	}
+	
+	
+	.numbering {
+		font-size: 18px;
+		height: 43px !important;
+	}
+}
+
+@media (min-height: 1000px)  {
+	.statistics_maps h1 {
+		margin-top: 18px !important;
+	}
+	
+	.table_smi tr, .table_smi td{
+		height: 44px !important;
+	}
+
+	.table_soc tr, .table_soc td{
+		height: 44px !important;
+	}
+	
+	
+	.numbering {
+		font-size: 18px;
+		height: 44px !important;
+	}
+}
+
+
+@media (min-height: 1040px)  {
+	.statistics_maps {
+		margin-top: 30px !important;
+	}
+	
+	.table_smi tr, .table_smi td{
+		height: 45px !important;
+	}
+
+	.table_soc tr, .table_soc td{
+		height: 45px !important;
+	}
+	
+	
+	.numbering {
+		font-size: 18px;
+		height: 45px !important;
+	}
+}
+
+@media (min-height: 1080px)  {
+	.statistics_maps {
+		margin-top: 30px !important;
+	}
+	
+	.table_smi tr, .table_smi td{
+		height: 48px !important;
+	}
+
+	.table_soc tr, .table_soc td{
+		height: 48px !important;
+	}
+	
+	
+	.numbering {
+		font-size: 18px;
+		height: 48px !important;
+	}
+}
+
+
+@media (min-width: 1900px)  {
+	#date{
+		float: right;
+		margin-left: 20px;
+
+	}
+
+	#time{
+		float: left;
+		margin-top: 10px;
+		margin-left: 500px;
+
+	}
+	.nav_top .date{
+		margin-left: 13% !important;
+	}
+	.top_block{
+		border-bottom: 1px solid #161417;
+		height: 330px;
+	}
+	
+	.title_block {
+		padding: 20px 20px 0px;
+		font-size: 16px;
+		color: #fff;
+		line-height: 16px;
+		font-weight: bold;
+	}
+	.public_all_period, .public_to_day {
+		padding-top: 16px;
+		font-size: 16px;
+		line-height: 16px;
+		font-weight: bold;
+	}
+	
+	#container_1 {
+		height: 260px !important;
+		min-width: 700px !important;
+		max-width: 700px !important;
+		width: 700px !important;
+		margin: 0 auto; 
+	}
+	#container_2 {
+		height: 260px !important; 
+		min-width: 700px !important;
+		max-width: 700px !important;
+		width: 700px !important;
+		margin: 0 auto; 
+	}	
+		
+	#container_maps_rk {
+		margin-top: 30px;
+		height: 260px; 
+		max-width: 470px; 
+		margin: 0 auto; 
+	}
+
+	#container_maps_world {
+		margin-top: 30px;
+		height: 260px; 
+		max-width: 470px; 
+		margin: 0 auto; 
+	}	
+	
+	.maps_block{
+		border-bottom: 1px solid #161417;
+		border-right: 1px solid #161417; 
+		height: 56vh;
+	}
+	.maps_world, .maps_rk{
+		height: 40vh;
+		border-bottom: 1px solid #161417; 
+	}
+	
+	
+	h1{
+		margin-top: 2vh !important;
+		font-size: 36px !important;
+	}
+
+	h2{
+		font-size: 28px !important;
+	}
+	
+	.title_div_to_day {
+		margin-bottom: 0px;
+		margin-top: 36px !important;
+		font-weight: bold;
+	}
+	.statistics_maps table{
+		margin-top: 36px !important;
+	}
+	.statistics_maps span, .day_all_public{
+		font-size: 12px !important;
+	}
+	
+	
+	.top_smi, .top_social {
+		height: 56vh;
+		border-right: 1px solid #161417;
+		border-bottom: 1px solid #161417;
+	}
+	
+	.table_smi{
+		margin-left: 5px;
+	}
+
+	.table_smi tr, .table_smi td{
+		/* height: 48px !important; */
+	}
+
+	.table_soc{
+		margin-left: 5px;
+	}
+
+	.table_soc tr, .table_soc td{
+		/* height: 48px !important; */
+	}
+	
+	
+	
+	.table-sorter, .table_num {
+		margin-top: 20px;
+		margin-left: 5px;
+	}
+	.numbering {
+		font-size: 18px;
+		/* height: 48px !important; */
+	}
+	.top_smi_name {
+		width: 40px;
+	}
+	.top_smi_name img {
+		width: 30px !important;
+		max-height: 40px;
+	}
+	.top_block_count {
+		width: 295px;
+		color: #fff;
+		font-size: 12px;
+		min-width: 295px;
+		max-width: 295px;
+	}
+	.top_block_count img{
+		width: 16px !important;
+		height: 16px !important;
+	}
+	.top_smi_count {
+		color: #fff;
+		font-size: 18px;
+		font-weight: bold;
+		width: 70px;
+		text-align: right;
+	}
+	
+	.top_block_count div {
+		height: 7px !important;
+	}
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017, .name_statistic_2018, .name_statistic_2019, .name_statistic_2020, .name_statistic_2021{
+		position: absolute;
+		bottom: 50px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 100px;
+	}
+	.name_statistic_2016{
+		margin-left: 250px;
+	}
+	.name_statistic_2017{
+		margin-left: 400px;
+	}
+	
+	.name_statistic_2018{
+		margin-left: 525px;
+	}
+	
+	.live_block {
+		height: 95px;
+		position: fixed !important;
+		bottom: 0 !important;
+	}
+	
+	.live_title div {
+		font-size: 38px;
+		margin-top: 20px;
+		height: 100vh;
+	}
+	
+	.live_smi, .live_social {
+		font-size: 24px;
+		padding: 6px !important;
+	}
+	
+	.live_smi_content, .live_social_content{
+		padding: 12px 10px !important;
+	}
+	.live_content {
+		font-size: 16px;
+	}
+	
+	.statistics_maps img{
+		width: 30px !important;
+		margin-left: 5px;
+	}
+	
+	#second img,
+	#third img,
+	#fourth img,
+	#five img{
+		height: 80% !important;
+	}
+	
+	
+}
+
+
+@media (min-width: 2220px)  {
+	.top_block{
+		border-bottom: 1px solid #161417;
+		height: 340px;
+	}
+	
+	.title_block {
+		padding: 20px 20px 0px;
+		font-size: 18px;
+		color: #fff;
+		line-height: 18px;
+	}
+	
+	#container_1 {
+		height: 260px !important;
+		min-width: 800px !important;
+		max-width: 800px !important;
+		width: 800px !important;
+		margin: 0 auto; 
+	}
+	#container_2 {
+		height: 260px !important; 
+		min-width: 800px !important;
+		max-width: 800px !important;
+		width: 800px !important;
+		margin: 0 auto; 
+	}	
+		
+	#container_maps_rk {
+		margin-top: 70px;
+		height: 300px; 
+		max-width: 520px; 
+		margin: 0 auto; 
+	}
+
+	#container_maps_world {
+		margin-top: 70px;
+		height: 300px; 
+		max-width: 520px; 
+		margin: 0 auto; 
+	}	
+	
+	.maps_block{
+		border-bottom: 1px solid #161417;
+		border-right: 1px solid #161417; 
+		height: 590px;
+	}
+	.maps_world, .maps_rk{
+		height: 450px; 
+		border-bottom: 1px solid #161417; 
+	}
+	
+	
+	h1{
+		margin-top: 40px !important;
+		font-size: 38px !important;
+	}
+
+	h2{
+		font-size: 32px !important;
+	}
+	
+	
+	.top_smi, .top_social {
+		height: 590px;
+		border-right: 1px solid #161417;
+		border-bottom: 1px solid #161417;
+	}
+	
+	.table-sorter, .table_num {
+		margin-top: 20px;
+		margin-left: 15px;
+		min-height: 410px;
+		max-height: 410px;
+	}
+	.numbering {
+		font-size: 18px;
+	}
+	.top_smi_name {
+		width: 40px;
+	}
+	.top_smi_name img {
+		width: 30px !important;
+		max-height: 40px;
+	}
+	.top_block_count {
+		width: 330px;
+		color: #fff;
+		font-size: 12px;
+	}
+	
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017, .name_statistic_2018, .name_statistic_2019, .name_statistic_2020, .name_statistic_2021{
+		position: absolute;
+		bottom: 50px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 100px;
+	}
+	.name_statistic_2016{
+		margin-left: 275px;
+	}
+	.name_statistic_2017{
+		margin-left: 425px;
+	}
+	
+	.name_statistic_2018{
+		margin-left: 625px;
+	}
+	
+	#second img,
+	#third img,
+	#fourth img,
+	#five img	{
+		height: 80% !important;
+	}
+}
+
+
+@media (min-width: 2420px)  {
+	.top_block{
+		border-bottom: 1px solid #161417;
+		height: 450px;
+	}
+	
+	.title_block {
+		padding: 20px 20px 0px;
+		font-size: 20px;
+		color: #fff;
+		line-height: 20px;
+	}
+	
+	#container_1 {
+		height: 370px !important;
+		min-width: 900px !important;
+		max-width: 900px !important;
+		width: 900px !important;
+		margin: 0 auto; 
+	}
+	#container_2 {
+		height: 370px !important; 
+		min-width: 900px !important;
+		max-width: 90px !important;
+		width: 900px !important;
+		margin: 0 auto; 
+	}	
+		
+	#container_maps_rk {
+		margin-top: 70px;
+		height: 500px; 
+		max-width: 650px; 
+		margin: 0 auto; 
+	}
+
+	#container_maps_world {
+		margin-top: 70px;
+		height: 500px; 
+		max-width: 650px; 
+		margin: 0 auto; 
+	}	
+	
+	.maps_block{
+		border-bottom: 1px solid #161417;
+		border-right: 1px solid #161417; 
+		height: 650px;
+	}
+	.maps_world, .maps_rk{
+		height: 590px; 
+		border-bottom: 1px solid #161417; 
+	}
+	
+	
+	h1{
+		margin-top: 40px !important;
+		font-size: 38px !important;
+	}
+	
+	.title_div_to_day {
+		margin-bottom: 0px;
+		margin-top: 45px !important;
+		font-weight: bold;
+	}
+
+	h2{
+		font-size: 40px !important;
+	}
+	.public_all_period, .public_to_day {
+		padding-top: 20px;
+		font-size: 20px;
+		line-height: 20px;
+		font-weight: bold;
+	}
+	
+	.div_to_day span, .div_to_arhiv span{
+		font-size: 16px !important;
+	}
+	
+	.top_smi, .top_social {
+		height: 590px;
+		border-right: 1px solid #161417;
+		border-bottom: 1px solid #161417;
+	}
+	
+	.table-sorter, .table_num {
+		margin-top: 20px;
+		margin-left: 15px;
+		min-height: 410px;
+		max-height: 410px;
+	}
+	.numbering {
+		font-size: 18px;
+	}
+	.top_smi_name {
+		width: 40px;
+	}
+	.top_smi_name img {
+		width: 30px !important;
+		max-height: 40px;
+	}
+	.top_block_count {
+		width: 330px;
+		color: #fff;
+		font-size: 12px;
+	}
+	
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017, .name_statistic_2018, .name_statistic_2019, .name_statistic_2020, .name_statistic_2021{
+		position: absolute;
+		bottom: 60px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 130px;
+	}
+	.name_statistic_2016{
+		margin-left: 325px;
+	}
+	.name_statistic_2017{
+		margin-left: 525px;
+	}
+	.name_statistic_2018{
+		margin-left: 700px;
+	}
+	
+	#second img,
+	#third img,
+	#fourth img,
+	#five img{
+		height: 80% !important;
+	}
+}
+
+@media (min-width: 2690px)  {
+	.top_block{
+		border-bottom: 1px solid #161417;
+		height: 550px;
+	}
+	
+	.title_block {
+		padding: 20px 20px 0px;
+		font-size: 20px;
+		color: #fff;
+		line-height: 20px;
+	}
+	
+	#container_1 {
+		height: 470px !important;
+		min-width: 900px !important;
+		max-width: 900px !important;
+		width: 900px !important;
+		margin: 0 auto; 
+	}
+	#container_2 {
+		height: 470px !important; 
+		min-width: 900px !important;
+		max-width: 90px !important;
+		width: 900px !important;
+		margin: 0 auto; 
+	}	
+		
+	#container_maps_rk {
+		margin-top: 70px;
+		height: 600px; 
+		max-width: 650px; 
+		margin: 0 auto; 
+	}
+
+	#container_maps_world {
+		margin-top: 70px;
+		height: 600px; 
+		max-width: 650px; 
+		margin: 0 auto; 
+	}	
+	
+	.maps_block{
+		border-bottom: 1px solid #161417;
+		border-right: 1px solid #161417; 
+		height: 850px;
+	}
+	.maps_world, .maps_rk{
+		height: 690px; 
+		border-bottom: 1px solid #161417; 
+	}
+	
+	
+	h1{
+		margin-top: 40px !important;
+		font-size: 38px !important;
+	}
+	
+	.title_div_to_day {
+		margin-bottom: 0px;
+		margin-top: 45px !important;
+		font-weight: bold;
+	}
+
+	h2{
+		font-size: 40px !important;
+	}
+	.public_all_period, .public_to_day {
+		padding-top: 20px;
+		font-size: 20px;
+		line-height: 20px;
+		font-weight: bold;
+	}
+	
+	.div_to_day span, .div_to_arhiv span{
+		font-size: 16px !important;
+	}
+	
+	.top_smi, .top_social {
+		height: 830px;
+		border-right: 1px solid #161417;
+		border-bottom: 1px solid #161417;
+	}
+	
+	.table-sorter, .table_num {
+		margin-top: 20px;
+		margin-left: 15px;
+		min-height: 510px;
+		max-height: 510px;
+	}
+	.numbering {
+		font-size: 18px;
+	}
+	.top_smi_name {
+		width: 40px;
+	}
+	.top_smi_name img {
+		width: 30px !important;
+		max-height: 40px;
+	}
+	.top_block_count {
+		width: 330px;
+		color: #fff;
+		font-size: 12px;
+	}
+	
+	
+	.name_statistic_2014, .name_statistic_2015, .name_statistic_2016, .name_statistic_2017, .name_statistic_2018, .name_statistic_2019, .name_statistic_2020, .name_statistic_2021{
+		position: absolute;
+		bottom: 60px;
+		left: 60px;
+		z-index: 99999;
+		font-size: 12px;
+		color: #fff;
+		float: left;
+	}
+	.name_statistic_2015{
+		margin-left: 130px;
+	}
+	.name_statistic_2016{
+		margin-left: 350px;
+	}
+	.name_statistic_2017{
+		margin-left: 570px;
+	}
+	.name_statistic_2018{
+		margin-left: 770px;
+	}
+	
+	#second img,
+	#third img,
+	#fourth img,
+	#five img{
+		height: 80% !important;
+	}
+}
+
+@media (min-width: 3020px)  {
+
+}
+
+
+@media (min-width: 3840px) {
+	
+}
+
+@media (min-width: 4096px) {
+	
+}
+
+
+
