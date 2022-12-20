@@ -1583,17 +1583,10 @@ Highcharts.mapChart('container_maps_rk', {
     }]
 });
 </script>
-
-
-	
 	<script src="/d_js/jquery-1.4.2.min.js" type="text/javascript"></script>
 	<script src="/d_js/jquery.easing.1.3.js" type="text/javascript"></script>
 	<script src="/d_js/jquery.quicksand.min.js" type="text/javascript"></script>
-<!-- Таблица -->
 <script>
-// $(document).ready(function () {
-	// setTimeout(function(){check_images();check_images_smi();setTimeout(function(){check_images_smi();check_images();},300);},50);
-// });
 </script>
 </body>
 </html>

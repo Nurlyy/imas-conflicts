@@ -17,26 +17,83 @@ if ($login === null) {
     $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : $month_ago;
     $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : $today;
 
+    $c_id = isset($_GET['c_id']) ? $_GET['c_id'] : null;
+    $page = (isset($_GET['first_limit']) ? $_GET['first_limit'] : 1);
+    $filter = (isset($_GET['filter']) ? $_GET['filter'] : 1);
+    $first_limit = $page * 30;
+
 
     $host = 'localhost';
     $username = 'v-40047_conflicts';
     $password = 'Mod&b704Iwtv38*6';
     $name = 'v-40047_conflicts';
-    $connect = mysqli_connect($host, $username, $password, $name) or die("Could not connect: " . mysqli_error($connect));
+    $connect = new mysqli($host, $username, $password, $name) or die("Could not connect: " . mysqli_error($connect));
     mysqli_query($connect, "SET NAMES 'utf8'");
     mysqli_query($connect, "SET CHARACTER SET 'utf8'");
     mysqli_query($connect, "SET SESSION collation_connection = 'utf8_general_ci'");
 
-    $count_query = mysqli_query($connect, "select count(n.id) as count, c.id, c.hc_key from news n inner join conflicts c on n.c_id = c.id group by c.id");
-    $table1 = array();
+    $count_query = mysqli_query($connect, "select n.c_id, count(n.id) as count from news n where n.date between '{$start_date} 23:59:59' and '{$end_date} 23:59:59' group by n.c_id");
+    // var_dump("select n.c_id, count(n.id) as count from news n where n.date between '{$start_date}' and '{$end_date}' group by n.c_id");
+    // exit;
+    $table3 = array();
     while ($row = mysqli_fetch_array($count_query)) {
-        $table1[] = $row;
+        $table3[] = $row;
     }
+
+    $conflicts_query = mysqli_query($connect, "select id, name, hc_key from conflicts");
+    $table2 = array();
+    while ($row = mysqli_fetch_array($conflicts_query)) {
+        $table2[] = $row;
+    }
+
+    $posts_count = mysqli_query($connect, "select count(id), c_id from news group by c_id");
+    $countArray = [];
+    while ($row = mysqli_fetch_array($posts_count)) {
+        $countArray[] = $row;
+    };
+
+    $table1 = [];
+
+    foreach ($table3 as $table) {
+        $table1[$table['c_id']] = $table;
+    }
+
+    foreach ($table2 as $table) {
+        $table1[$table['id']]['name'] = $table['name'];
+        $table1[$table['id']]['hc_key'] = $table['hc_key'];
+        $table1[$table["id"]]["c_id"] = $table['id'];
+    }
+
+    $query = "select c_id, title, text, link, date, sentiment, res_type, resource_name, resource_link, resource_logo from news where"
+        . (isset($c_id) ? " c_id={$c_id}" : "")
+        . (isset($first_limit) ? " limit {$first_limit}, 30" : "");
+    $posts_query = mysqli_query($connect, $query);
+
+    $total_count_between_dates = 0;
+
+    foreach ($table3 as $table) {
+        $total_count_between_dates += $table['count'];
+    }
+
+    // $pages = ceil($total_count_between_dates / 30);
+
+
+    // foreach ($table1 as $key=>$item) {
+    //     $tempstr = substr($item['hc_key'], 0, -1) . '"z": ';
+    //     $tempstr .=  ($item['count']>0)?$item['count']:0;
+    //     $tempstr .=  "},";
+    //     echo $tempstr . "....";
+    // }
+
+    // $posts_query = mysqli_query($connect, "select ")
+
     // echo "<pre>";
-    // var_dump($table1);
+    // var_dump($table1[$c_id]['name']);
     // echo "</pre>";
     // exit;
 
+
+    mysqli_close($connect);
 
 
 ?>
@@ -74,11 +131,11 @@ if ($login === null) {
         <script src="https://code.highcharts.com/modules/marker-clusters.js"></script>
         <script src="https://code.highcharts.com/modules/coloraxis.js"></script>
         <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
-
     </head>
 
     <body style="background: #252326;">
         <!-- Навигационное меню -->
+
         <nav class="nav_top col-sm-12 col-md-12 col-lg-12 padding-0">
             <a class="navbar-brand" href="http://imas.kz"><img class="img-responsive col-xs-12" src="https://cabinet.imas.kz/media/img/imas_logo_en_blue.png" style="width:240px;"></a>
             <div class="text">
@@ -89,13 +146,15 @@ if ($login === null) {
                 <img class="img-responsive" src="/images/madeinkz.png" style="zoom: 70%;">
             </div>
 
+
+
             <div class="number_one">
                 <img src="/icon/number_one.jpg" style="height: 50px; float: left;">
                 <div class="text">
                     <span id="system_text">Система в Казахстане <br>в режиме реального времени</span>
                 </div>
             </div>
-            <div class="date">
+            <div class="date" style="left: -50px;">
 
                 <script>
                     function Clock_ms() {
@@ -105,23 +164,18 @@ if ($login === null) {
 
                         var daysArr = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
-
-                        /* Настройки внешнего вида */
                         var c_h = '#357EBD'; // Цвет часов 
                         var c_m = '#357EBD'; // Цвет минут 
                         var c_s = '#357EBD'; // Цвет секунд 
                         var c_ms = '#357EBD'; // Цвет миллисекунд 
                         var sep = '#357EBD'; // Цвет разделителей 
 
-
-                        /* Для нормальной работы скрипта ниже лучше ничего не менять! */
                         var data = new Date();
 
                         var year = data.getFullYear();
                         var month = data.getMonth();
                         var numDay = data.getDate();
                         var day = data.getDay();
-
 
                         var hour = data.getHours();
                         var min = data.getMinutes();
@@ -145,310 +199,100 @@ if ($login === null) {
                 </script>
                 <span id="date_time"></span>
             </div>
+
+            <div class="filter_posts">
+                <i style="margin-left:5px; margin-right:-8px;" class="fa fa-arrow-up"></i>
+                <select id="filter_posts_select">
+                    <option value="1">Сначала новые</option>
+                    <option value="2">Сначала старые</option>
+                    <option value="3">Только позитивные</option>
+                    <option value="4">Только нейтральные</option>
+                    <option value="5">Только негативные</option>
+                </select>
+            </div>
+
+            <div class="filter_datetime p-t-0 f-l" style="position:absolute;float:right; right:0px; margin-right:70px; margin-top:7px;">
+                <!-- v:004-92M -->
+                <div id="reportrange" class="form-control b-none">
+                    <i class="fa fa-calendar p-r-5"></i>
+                    <span></span>
+                </div>
+            </div>
+
+
         </nav>
         <div class="col-sm-12 col-md-12 col-lg-12 padding-0">
             <div class="row">
                 <div class="col-8" id="world-map-container"></div>
-                <div class="col-4" style="background-color:#252326;">
-                    <div class="lenta">
-                        <h2 style="text-align:center; color: #666666; margin-bottom:10px;"><strong>Лента постов</strong></h2>
-                        <div class="filter_datetime p-t-0 f-l">
-                            <!-- v:004-92M -->
-                            <div id="reportrange" class="form-control b-none">
-                                <i class="fa fa-calendar p-r-5"></i>
-                                <span></span>
-                            </div>
-                        </div>
+                <div id="lenta-container" class="col-4" style="background-color:#252326;">
 
-                        <br>
-
-                        <div class="post-container">
-                            <div class="post-header">
-                                <div style="display:flex; flex-direction:row;">
-                                    <div class="col-2 post-img-div">
-                                        <img class="post-img" src="images/cnn.png" width="40px" />
-                                    </div>
-                                    <h4 class="col-10">Post Title Post Title Post Title Post Title Post Title </h4>
-                                </div>
-                                <p style="color:grey;">16:44 12 Декабря 2022 г. Понедельник | <a href="facebook.com">Facebook</a></p>
-                            </div>
-                            <div class="post-body">
-                                <p>This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. </p>
-                                <div class="post-sentiment<?php  #echo $post_sentiment 
-                                                            ?>">
-                                    Позитив
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post-container">
-                            <div class="post-header">
-                                <div style="display:flex; flex-direction:row;">
-                                    <div class="col-2 post-img-div">
-                                        <img class="post-img" src="images/bbc.png" width="50px" />
-                                    </div>
-                                    <h4 class="col-10">Post Title Post Title Post Title Post Title Post Title </h4>
-                                </div>
-                                <p style="color:grey;">16:44 12 Декабря 2022 г. Понедельник | <a href="facebook.com">Facebook</a></p>
-                            </div>
-                            <div class="post-body">
-                                <p>This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. </p>
-                                <div class="post-sentiment<?php  #echo $post_sentiment 
-                                                            ?>">
-                                    Позитив
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post-container">
-                            <div class="post-header">
-                                <div style="display:flex; flex-direction:row;">
-                                    <div class="col-2 post-img-div">
-                                        <img class="post-img" src="images/bbc.png" width="50px" />
-                                    </div>
-                                    <h4 class="col-10">Post Title Post Title Post Title Post Title Post Title </h4>
-                                </div>
-                                <p style="color:grey;">16:44 12 Декабря 2022 г. Понедельник | <a href="facebook.com">Facebook</a></p>
-                            </div>
-                            <div class="post-body">
-                                <p>This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. </p>
-                                <div class="post-sentiment<?php  #echo $post_sentiment 
-                                                            ?>">
-                                    Позитив
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post-container">
-                            <div class="post-header">
-                                <div style="display:flex; flex-direction:row;">
-                                    <div class="col-2 post-img-div">
-                                        <img class="post-img" src="images/bbc.png" width="50px" />
-                                    </div>
-                                    <h4 class="col-10">Post Title Post Title Post Title Post Title Post Title </h4>
-                                </div>
-                                <p style="color:grey;">16:44 12 Декабря 2022 г. Понедельник | <a href="facebook.com">Facebook</a></p>
-                            </div>
-                            <div class="post-body">
-                                <p>This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. </p>
-                                <div class="post-sentiment<?php  #echo $post_sentiment 
-                                                            ?>">
-                                    Позитив
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="post-container">
-                            <div class="post-header">
-                                <div style="display:flex; flex-direction:row;">
-                                    <div class="col-2 post-img-div">
-                                        <img class="post-img" src="images/bbc.png" width="50px" />
-                                    </div>
-                                    <h4 class="col-10">Post Title Post Title Post Title Post Title Post Title </h4>
-                                </div>
-                                <p style="color:grey;">16:44 12 Декабря 2022 г. Понедельник | <a href="facebook.com">Facebook</a></p>
-                            </div>
-                            <div class="post-body">
-                                <p>This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. This is post description or text. </p>
-                                <div class="post-sentiment<?php  #echo $post_sentiment 
-                                                            ?>">
-                                    Позитив
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
             </div>
         </div>
+        <div class="loading">Loading&#8230;</div>
         <script src="/d_js/jquery-3.1.1.min.js"></script>
+        <script src="world/js/plugins/twbs/jquery.twbsPagination.js"></script>
         <script src="world/js/moment.js"></script>
         <script src="world/js/daterangepicker.js"></script>
+
         <script>
+            function gotopage(count) {
+                if (count >= 1) {
+                    total = <?= $total_count_between_dates ?>;
+                    pages = total / 30;
+                    // console.log(start_date, end_date, c_id, count)
+                    getLenta(start_date, end_date, c_id, count, $("#filter_posts_select").val())
+                }
+            }
+
             (async () => {
                 const topology = await fetch(
                     'https://code.highcharts.com/mapdata/custom/world.topo.json'
                 ).then(response => response.json());
                 data = [
                     <?php
-                    foreach ($table1 as $item) {
-                        // for ($i = 0; $i < 2; $i++) {
-                            $tempstr = substr($item['hc_key'], 0, -1) . '"count": ' . $item['count'] . "},";
-                            echo $tempstr;
-                        // }
+                    foreach ($table1 as $key => $item) {
+                        // $tempstr = substr($item['hc_key'], 0, -1) . '"z": ' . ($item['count']>0)?$item['count']:0 . "},";
+                        $tempstr = substr($item['hc_key'], 0, -1) . '"z": ';
+                        $tempstr .=  ($item['count'] > 0) ? $item['count'] . "," : 0 . ", ";
+                        $tempstr .= '"c_id": ';
+                        $tempstr .= $item['c_id'] . ",";
+                        $tempstr .=  "},";
+                        echo $tempstr;
                     }
                     ?>
-                    // {
-                    // "name": "Украина",
-                    // "lat": 49.059504586073835,
-                    // "lon": 31.375807931443198,
-                    // "country": "UA",
-                    // },{
-                    // "name": "Сирия",
-                    // "lat": 35.05808832001548, 
-                    // "lon": 38.387270150683435,
-                    // "country": "FR",
-                    // }, {
-                    // "name": "Сектор Газа",
-                    // "lat": 31.499651492089765,
-                    // "lon": 34.453665919906264,
-                    // "country": "FR",
-                    // },{
-                    // "name": "Турецко-Сирийская граница",
-                    // "lat": 36.20453105162421,
-                    // "lon": 37.13681718884459,
-                    // "country": "FR",
-                    // }, {
-                    // "name": "Карабахское нагорье",
-                    // "lat": 39.88669024201312,
-                    // "lon": 46.139479107796255,
-                    // "country": "FR"
-                    // }, {
-                    // "name": "Линия Дюранда регион Вазиристан",
-                    // "lat": 32.32124986340483, 
-                    // "lon": 69.85935114573644,
-                    // "country": "FR"
-                    // }, {
-                    // "name": "Западная Сахара",
-                    // "lat": 24.66513586235691, 
-                    // "lon": -13.194248481996402,
-                    // "country": "FR"
-                    // }, {
-                    // "name": "Полуостров Корея",
-                    // "lat": 37.748865762507,
-                    // "lon": 127.9319676664056,
-                    // "country": "BE"
-                    // }, {
-                    // "name": "Кашмир",
-                    // "lat": 33.2808706932512,
-                    // "lon": 75.35189891980443,
-                    // "country": "CH"
-                    // },
-                    // {
-                    // "name": "Баткенская область",
-                    // "lat": 40.01834973863929, 
-                    // "lon": 70.52962825966277,
-                    // "country": "CH"
-                    // }
                 ];
-
-                // console.log(data);
-
                 Highcharts.mapChart('world-map-container', {
                     chart: {
                         map: topology,
                         backgroundColor: "#252326",
                     },
                     title: {
-                        text: 'Посты на карте мира',
-                        style: {
-                            color: "#fff"
-                        }
+                        text: ''
+                    },
+                    legend: {
+                        enabled: false
                     },
                     mapNavigation: {
                         enabled: true,
                         buttonOptions: {
-                            alignTo: 'spacingBox',
-                            x: 10
+                            verticalAlign: 'bottom'
                         }
                     },
-                    // tooltip: {
-                    //     headerFormat: '',
-                    //     pointFormat: '<b>{point.name}</b><br>Lat: {point.lat:.2f}, Lon: {point.lon:.2f}'
-                    // },
-                    tooltip: {
-                        formatter: function() {
-                            console.log(this)
-                            if (this.point.clusteredData) {
-                                this.point.clusterPointsAmount = 0;
-                                this.point.clusteredData.forEach(element => {
-                                    this.point.clusterPointsAmount += element.options.count;
-                                })
-
-                                tempname = this.point.clusteredData[0].options.name;
-                                temparray = [];
-                                this.point.clusteredData.forEach(element => {
-                                    if (element.options.name) {
-                                        if (element.options.name == tempname) {
-                                            temparray.push(true);
-                                        } else {
-                                            temparray.push(false);
-                                        }
-                                    }
-                                });
-                                tempval = temparray.every(element => element === true);
-                                if (tempval === true) {
-                                    return this.point.clusteredData[0].options.name + ': ' + this.point.clusterPointsAmount;
-                                }
-
-                                return 'Clustered data: ' + this.point.clusterPointsAmount;
-                            }
-                            return '<b>' + this.key + "</b><br><b>Кол-во постов: " + this.point.count;
-                        }
-                    },
-                    colorAxis: {
-                        min: 1,
-                        max: 1000,
-                        type: 'logarithmic',
-                        minColor: '#bcc8ff',
-                        maxColor: '#274ef9'
-                    },
-                    plotOptions: {
-                        mappoint: {
-                            cluster: {
-                                enabled: false,
-                                text: "fdjsfdsa",
-                                allowOverlap: false,
-                                animation: {
-                                    duration: 450
-                                },
-                                layoutAlgorithm: {
-                                    type: 'grid',
-                                    gridSize: 70
-                                },
-                                zones: [{
-                                    from: 1,
-                                    to: 4,
-                                    marker: {
-                                        radius: 13
-                                    }
-                                }, {
-                                    from: 5,
-                                    to: 9,
-                                    marker: {
-                                        radius: 15
-                                    }
-                                }, {
-                                    from: 10,
-                                    to: 15,
-                                    marker: {
-                                        radius: 17
-                                    }
-                                }, {
-                                    from: 16,
-                                    to: 20,
-                                    marker: {
-                                        radius: 19
-                                    }
-                                }, {
-                                    from: 21,
-                                    to: 50,
-                                    marker: {
-                                        radius: 21
-                                    }
-                                }, {
-                                    from: 51,
-                                    to: 70,
-                                    marker: {
-                                        radius: 25
-                                    }
-                                }, {
-                                    from: 71,
-                                    to: 100000,
-                                    marker: {
-                                        radius: 29
-                                    }
-                                }, ]
-                            }
+                    mapView: {
+                        fitToGeometry: {
+                            type: 'MultiPoint',
+                            coordinates: [
+                                // Alaska west
+                                [-164, 54],
+                                // Greenland north
+                                [-35, 84],
+                                // New Zealand east
+                                [179, -38],
+                                // Chile south
+                                [-68, -55]
+                            ]
                         }
                     },
                     series: [{
@@ -456,52 +300,50 @@ if ($login === null) {
                         accessibility: {
                             exposeAsGroupOnly: true
                         },
-                        borderColor: '#fff',
-                        nullColor: 'rgba(166, 249, 202, 0.79)',
+                        // borderColor: '#fff',
+                        // nullColor: "#18894f",
                         showInLegend: false,
-
                     }, {
-                        type: 'mappoint',
-                        enableMouseTracking: true,
-                        title: "Something",
-
-                        accessibility: {
-                            point: {
-                                descriptionFormatter: function(point) {
-                                    if (point.isCluster) {
-                                        return 'Grouping of ' + point.clusterPointsAmount + ' points.';
-                                        this.point.clusterPointsAmount = 0;
-                                        this.point.clusteredData.forEach(element => {
-                                            this.point.clusterPointsAmount += element.options.count;
-                                        })
-                                    }
-                                    return point.name + ', country code: ' + point.country + '.';
+                        type: 'mapbubble',
+                        name: 'Публикаций',
+                        joinBy: ['iso-a3', 'point.country'],
+                        data: data,
+                        color: '#ff543a',
+                        title: "CJFIDOS",
+                        minSize: 4,
+                        maxSize: '12%',
+                        tooltip: {
+                            pointFormat: '{point.name}: {point.z}'
+                        },
+                        point: {
+                            events: {
+                                click: function(e) {
+                                    $("#conflict_title").text(this.name)
+                                    c_id = this.c_id;
+                                    getLenta(start, end, this.c_id, 1, $("#filter_posts_select").val());
+                                    // $(".loading").css('display', 'block');
                                 }
                             }
-                        },
-                        colorKey: 'clusterPointsAmount',
-                        name: 'Cities',
-                        data: data
+                        }
                     }]
                 });
             })();
         </script>
         <script>
-            function addState(sdate, edate) {
-                $.ajax({
-                    url: '?start_date=' + sdate + '&end_date=' + edate,
-                    type: 'GET',
-                    success: function(data) {
-                        // console.log(sdate);
-                        history.pushState("", "", '?start_date=' + sdate + '&end_date=' + edate);
-                        $('.wrapper-content').html(data);
-                    }
-                });
-            }
+            var start = '<?= $start_date ?>';
+            var end = '<?= $end_date ?>';
+            c_id = '<?php echo $c_id ?>';
+
 
             function do_daterangepicker_stuff(start, end, label) {
                 $('#reportrange span').html(start.format('D.MM.YYYY') + ' - ' + end.format('D.MM.YYYY'));
-                addState(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+                history.pushState("", "", '?start_date=' + start.format('YYYY-MM-DD') + '&end_date=' + end.format('YYYY-MM-DD') +
+                    ((c_id) ? "&c_id=" + c_id : "")
+                );
+                start = start.format('YYYY-MM-DD');
+                end = end.format('YYYY-MM-DD');
+                location.reload();
+                window.reload();
             }
 
             function create_daterangepicker(start, end) {
@@ -575,18 +417,78 @@ if ($login === null) {
                 $('#reportrange-header').daterangepicker(daterangepicker_setting, do_daterangepicker_stuff);
             }
 
+            function getLenta(start, end, c_id, first_limit = 1, filter = $("#filter_posts_select").val()) {
+                $(".loading").css('display', 'block');
+                // tmp1 = new Date(start);
+                // tmp2 = new Date(end);
+                // console.log(tmp1.getFullYear())
+                // console.log("posts.php?start_date=" + (!start.includes("-") ? (start.split(".")[2] + "-" + start.split(".")[1] + "-" + start.split(".")[0]) : start) + '&end_date=' + (!end.includes("-") ? (end.split(".")[2] + "-" + end.split(".")[1] + "-" + end.split(".")[0]) : end) + ((c_id !== "" && c_id != undefined) ? "&c_id=" + c_id : "") + ((first_limit != null) ? "&first_limit=" + first_limit : ""));
+                $.ajax({
+                    url: "posts.php?start_date=" + (!start.includes("-") ? (start.split(".")[2] + "-" + start.split(".")[1] + "-" + start.split(".")[0]) : start) + '&end_date=' + (!end.includes("-") ? (end.split(".")[2] + "-" + end.split(".")[1] + "-" + end.split(".")[0]) : end) + ((c_id !== "" && c_id != undefined) ? "&c_id=" + c_id : "") + ((first_limit != null) ? "&first_limit=" + first_limit : "") + "&filter="+filter,
+                    method: "GET",
+                    success: function(data) {
+                        document.getElementById("lenta-container").innerHTML = data;
+                        history.pushState("", "", 'world.php?start_date=' + (!start.includes("-") ? (start.split(".")[2] + "-" + start.split(".")[1] + "-" + start.split(".")[0]) : start) + '&end_date=' + (!end.includes("-") ? (end.split(".")[2] + "-" + end.split(".")[1] + "-" + end.split(".")[0]) : end) + ((c_id !== "" && c_id != undefined) ? "&c_id=" + c_id : "") + ((first_limit != null) ? "&first_limit=" + first_limit : "") + "&filter="+filter);
+                        $(".loading").css('display', 'none');
+                        counter = 0;
+                        bul = false;
+                        console.log(first_limit)
+                        $('#pagination-demo').twbsPagination({
+                            totalPages: $("#pages").val(),
+                            visiblePages: 5,
+                            startPage: first_limit,
+                            initiateStartPageClick: false,
+                            prev: "",
+                            next: "",
+                            last: "",
+                            first: "",
+                            onPageClick: function(event, page) {
+                                // if (counter > 0) {
+                                    gotopage(page);
+                                // } else {
+                                    // counter++;
+                                // }
+                                // counter += 1;
+                                // if(counter == 1){
+
+                                // } else {
+                                //     gotopage(page)
+                                // }
+                                // alert(page)
+                                // if(page == 1){
+                                //     bul = true;
+                                // }else {
+                                //     bul = false;
+                                // }
+                                // if(!bul){
+                                //     gotopage(page)
+                                // }
+                            }
+                        });
+                    }
+                })
+                // runpagination();
+            }
+
+            $("#filter_posts_select").on("change", function(){
+                getLenta(start, end, c_id, 1, $("#filter_posts_select").val())
+            })
+
             $(document).ready(function() {
                 if (!(window.location.href).includes("?start_date")) {
-                    history.pushState("", "", '?start_date=' + '<?= $start_date ?>' + '&end_date=' + '<?= $end_date ?>');
+                    if (!(window.location.href).includes("&c_id")) {
+                        history.pushState("", "", 'world.php?start_date=' + '<?= $start_date ?>' + '&end_date=' + '<?= $end_date ?>' +
+                            ((c_id !== "") ? "&c_id=" + c_id : ""));
+                    }
+                    history.pushState("", "", 'world.php?start_date=' + '<?= $start_date ?>' + '&end_date=' + '<?= $end_date ?>');
                 }
                 create_daterangepicker('<?= $start_date ?>', '<?= $end_date ?>');
+                getLenta('<?= $start_date ?>', '<?= $end_date ?>', <?= $c_id ?>);
+                $(".loading").css('display', 'block');
             });
         </script>
     </body>
 
     </html>
-
-
-
 <?php
 }
